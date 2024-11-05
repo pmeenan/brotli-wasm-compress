@@ -91,8 +91,8 @@ EMSCRIPTEN_BINDINGS(BrotliEncoder) {
   function("CompressStream", &_BrotliEncoderCompressStream);
   function("HasMoreOutput", &_BrotliEncoderHasMoreOutput);
 
-  // ZSTD_cParameter
-  enum_<BrotliEncoderParameter>("EncoderParameter")
+  // Enums
+  enum_<BrotliEncoderParameter>("Parameter")
     .value("MODE", BrotliEncoderParameter::BROTLI_PARAM_MODE)
     .value("QUALITY", BrotliEncoderParameter::BROTLI_PARAM_QUALITY)
     .value("LGWIN", BrotliEncoderParameter::BROTLI_PARAM_LGWIN)
@@ -103,6 +103,21 @@ EMSCRIPTEN_BINDINGS(BrotliEncoder) {
     .value("NPOSTFIX", BrotliEncoderParameter::BROTLI_PARAM_NPOSTFIX)
     .value("NDIRECT", BrotliEncoderParameter::BROTLI_PARAM_NDIRECT)
     .value("STREAM_OFFSET", BrotliEncoderParameter::BROTLI_PARAM_STREAM_OFFSET);
+
+  enum_<BrotliSharedDictionaryType>("SharedDictionaryType")
+    .value("Raw", BrotliSharedDictionaryType::BROTLI_SHARED_DICTIONARY_RAW)
+    .value("Serialized", BrotliSharedDictionaryType::BROTLI_SHARED_DICTIONARY_SERIALIZED);
+
+  enum_<BrotliEncoderMode>("Mode")
+    .value("GENERIC", BrotliEncoderMode::BROTLI_MODE_GENERIC)
+    .value("TEXT", BrotliEncoderMode::BROTLI_MODE_TEXT)
+    .value("FONT", BrotliEncoderMode::BROTLI_MODE_FONT);
+
+  enum_<BrotliEncoderOperation>("Operation")
+    .value("PROCESS", BrotliEncoderOperation::BROTLI_OPERATION_PROCESS)
+    .value("FLUSH", BrotliEncoderOperation::BROTLI_OPERATION_FLUSH)
+    .value("FINISH", BrotliEncoderOperation::BROTLI_OPERATION_FINISH)
+    .value("EMIT_METADATA", BrotliEncoderOperation::BROTLI_OPERATION_EMIT_METADATA);
 
   // Structures
   class_<BrotliEncoderBuffer>("Buffer")
